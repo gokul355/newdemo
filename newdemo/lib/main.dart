@@ -2,19 +2,36 @@ import 'package:flutter/material.dart';
 
 import 'package:package_info/package_info.dart';
 import 'package:flutter_appcenter_bundle/flutter_appcenter_bundle.dart';
+import 'package:appcenter/appcenter.dart';
+import 'package:appcenter_analytics/appcenter_analytics.dart';
+import 'package:appcenter_crashes/appcenter_crashes.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await AppCenter.startAsync(
-    appSecretAndroid: '49361c2e-b788-4bc2-a33d-838b04b3e06b',
-    appSecretIOS: '2da3d93f-6b3f-48f9-920f-2d63ae3cd25a',
-    enableDistribute: false,
-  );
-  await AppCenter.configureDistributeDebugAsync(enabled: false);
 
+// void main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await AppCenter.startAsync(
+//     appSecretAndroid: '49361c2e-b788-4bc2-a33d-838b04b3e06b',
+//     appSecretIOS: '2da3d93f-6b3f-48f9-920f-2d63ae3cd25a',
+//     enableDistribute: false,
+//   );
+//   await AppCenter.configureDistributeDebugAsync(enabled: false);
+
+//   runApp(MyApp());
+//   _initializeAppCenter();
+// }
+void main() {
   runApp(MyApp());
+  _initializeAppCenter();
 }
 
+void _initializeAppCenter() async {
+  await AppCenter.start(
+    appSecretAndroid: '"aa9dae02-31f7-459c-9082-2842cea9209a"',
+    appSecretIOS: 'YOUR_IOS_APP_SECRET',
+    enableAnalytics: true,
+    enableCrashes: true,
+  );
+}
 class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
